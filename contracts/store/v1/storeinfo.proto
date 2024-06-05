@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcpoc";
+
+package store.v1;
+
+import "google/protobuf/empty.proto";
+
+
+import "store/v1/balance.proto";
+import "warehouse/v1/product.proto";
+import "warehouse/v1/transportschema.proto";
+
+
+message StoreInfo {
+  int32 id = 1;
+  repeated warehouse.v1.Product products = 2;
+  Balance balance 	    = 3;
+}
+
+service StoreService {
+  // Sends a greeting
+  rpc GetStoreInfo (StoreInfoRequest) returns (StoreInfo);
+  rpc GetTransportSchemas (TransportSchemasRequest) returns (stream warehouse.v1.TransportSchema);
+  rpc UpdateBalance(UpdateBalanceRequest) returns (google.protobuf.Empty);
+  rpc AddProducts(AddProductsRequest) returns (google.protobuf.Empty);
+}
+
+message StoreInfoRequest {
+  int32 id  = 1;
+}
+
+message TransportSchemasRequest {
+  int32 storeId = 1;
+}
+
+message UpdateBalanceRequest {
+  int32 storeId = 1;
+  Balance balance = 2;
+}
+
+message AddProductsRequest {
+  int32 storeId = 1;
+  repeated warehouse.v1.TransportSchema products = 2;  
+}

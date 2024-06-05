@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcpoc";
+
+package warehouse.v1;
+
+message Location {
+  int32 latitude          = 1;
+  int32 longitude         = 2;
+  string city 	          = 3;
+  string postalCode       = 4;
+  string street           = 5;
+  int32 streetNumber      = 6;
+  bool isOpen             = 7;
+}

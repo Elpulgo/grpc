@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcpoc";
+
+package warehouse.v1;
+
+import "warehouse/v1/location.proto";
+import "google/protobuf/empty.proto";
+
+message Product {
+  string name 	    = 1;
+  Location location = 2;
+  string eanCode    = 3;
+  int32 price       = 4;
+}
+
+service ProductService {
+  // Sends a greeting
+  rpc GetProducts (google.protobuf.Empty) returns (stream Product);
+  rpc GetProductBalance (ProductBalanceRequest) returns (ProductBalanceResponse);
+  rpc GetProductsForLocation (ProductLocationRequest) returns (stream Product);
+}
+
+message ProductBalanceRequest {
+  string name  = 1;
+}
+
+message ProductBalanceResponse {
+  map<string, int32> entries = 1;
+}
+
+message ProductLocationRequest {
+  int32 latitude = 1;
+  int32 longitude = 2;
+}

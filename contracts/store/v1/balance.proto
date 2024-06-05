@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcpoc";
+
+package store.v1;
+
+message Balance {
+  int32 count 	    = 1;
+  int32 id            = 2;
+}

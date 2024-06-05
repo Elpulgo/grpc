@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcpoc";
+
+package warehouse.v1;
+
+import "google/protobuf/timestamp.proto";
+import "warehouse/v1/product.proto";
+
+message TransportSchema {
+  google.protobuf.Timestamp timestamp 	    = 1;
+  int32 sequence            = 2;
+  int32 trailerId           = 3;
+  repeated Product Products = 4;
+  int32 storeInfoId = 5;
+}
