@@ -2,6 +2,9 @@ using grpcpoc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddLogging();
+
 // Add services to the container.
 builder.Services.AddGrpc();
 
